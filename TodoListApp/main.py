@@ -6,34 +6,30 @@ while True:
         case 'add':
             todo = input("Enter a todo: ") + '\n'
 
-            file = open('todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
+
             # Crea una lista con el contenido de las lineas
             todos.append(todo)
             # Añade la nueva linea y lo une a la lista todos.
 
-            file = open('todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            with open('todos.txt', 'w') as file:
+                todos = file.writelines(todos)
             # Escribe nuevas lineas en el txt
         case 'show':
-            file = open('todos.txt', 'r')  # abrimos
-            todos = file.readlines()  # leemos las lineas y obtenemos un list
 
-            file.close()
-
-            for item in todos:
-                item = item.strip('\n')
-                new_item = item.strip('\n')
-                new_todos.append(new_item)
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
             for index, item in enumerate(todos):
+                item = item.strip('\n')
                 row = f"{index + 1} - {item}"
                 print(row)
         case 'edit':
             number = int(input("Number of the todo to edit: "))
-            number -= 1
+            number = number - 1
+            new_todo = input("Enter a new todo")
+            todos[number] = new_todo
         case 'complete':
             number = int(input("Number of the todo to complete: "))
             todos.pop(number - 1)

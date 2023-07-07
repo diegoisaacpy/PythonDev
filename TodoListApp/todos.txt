@@ -1,7 +1,0 @@
-clean
-n
-hola
-ola
-holaaaaa
-eoghrehg
-comer
